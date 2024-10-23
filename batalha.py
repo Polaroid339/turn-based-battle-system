@@ -1,10 +1,18 @@
-import os, time, random
-
+"""
+Imports para funções base do código
+"""
+import os
+import time
+import random
 level: int = 1
 lvlpoints: int = 0
 
 
 def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
+    """
+    Função para iniciar a batalha, necessário:
+    [nome do jogador], [nome do inimigo], [lvl jogador], [lvl inimigo], [qtd poções]
+    """
 
     os.system('cls')
 
@@ -18,6 +26,7 @@ def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
     hpinicial = 100 + (lvl/2)
     inimigohp = 100 + (inimilvl/2)
     inimigohpini = 100 + (inimilvl/2)
+    lvlpoints = 0
 
     ataque1 = 10 + (lvl/4)
     ataque2 = 35 + (lvl/4)
@@ -295,22 +304,25 @@ def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
         if inimigohp <= 0:
             print_slow(f"{inimigo} foi Derrotado!")
             print_slow(f"Você ganhou! {int(inimilvl*100)} pontos de EXP!")
-            global level
 
-            if level < 100:
-                global lvlpoints
+            if lvl < 100:
                 lvlpoints += int(inimilvl*100)
 
                 while True:
                     if lvlpoints >= (lvl*100):
                         lvlpoints = lvlpoints - (lvl*100)
-                        level += 1
+                        lvl += 1
                         print_slow(f"O seu nível aumentou! LVL {level}")
                     else:
                         break
+                return lvl
             else:
                 print("Level máximo!")
 
         elif hp <= 0:
             print_slow(f"{jogador} foi Derrotado!")
             print_slow("Você perdeu!")
+
+
+if __name__ == "__main__":
+    batalha("Victor", "Inimigo", level, 100, 2)
