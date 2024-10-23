@@ -1,9 +1,9 @@
 """
 Imports para funções base do código
 """
-import os
+from os import system
 import time
-import random
+from random import randint
 level: int = 1
 lvlpoints: int = 0
 
@@ -14,7 +14,7 @@ def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
     [nome do jogador], [nome do inimigo], [lvl jogador], [lvl inimigo], [qtd poções]
     """
 
-    os.system('cls')
+    system('cls')
 
     def print_slow(text, delay=0.05):
         for char in text:
@@ -39,7 +39,7 @@ def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
 
     while hp > 0 and inimigohp > 0:
 
-        os.system('cls')
+        system('cls')
 
         print("="*66)
         print(f"\n{inimigo} LVL {inimilvl}  HP: [{
@@ -59,11 +59,11 @@ def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
 [5] Poções ({pocoes})
 [6] Correr\n""")
 
-        critico = random.randint(1, 10)
-        inimicrit = random.randint(1, 10)
-        status = random.randint(1, 7)
-        esquiva = random.randint(1, 20)
-        inimiesquiva = random.randint(1, 20)
+        critico = randint(1, 10)
+        inimicrit = randint(1, 10)
+        status = randint(1, 7)
+        esquiva = randint(1, 20)
+        inimiesquiva = randint(1, 20)
         atkinimigo = 0
         dano = 0
         danoinimi = 0
@@ -206,7 +206,7 @@ def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
                 time.sleep(2)
 
         else:
-            atkinimigo = random.randint(1, 4)
+            atkinimigo = randint(1, 4)
 
             match atkinimigo:
                 case 1:
@@ -298,7 +298,7 @@ def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
         proteger = 0
         inimigohp -= dano
         hp -= danoinimi
-        os.system('cls')
+        system('cls')
 
     if hp <= 0 or inimigohp <= 0:
         if inimigohp <= 0:
@@ -312,10 +312,10 @@ def batalha(jogador: str, inimigo: str, lvl, inimilvl, pocoes: int):
                     if lvlpoints >= (lvl*100):
                         lvlpoints = lvlpoints - (lvl*100)
                         lvl += 1
-                        print_slow(f"O seu nível aumentou! LVL {level}")
+                        print_slow(f"O seu nível aumentou! LVL {lvl}")
+                        return lvl
                     else:
                         break
-                return lvl
             else:
                 print("Level máximo!")
 
